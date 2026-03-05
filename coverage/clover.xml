@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1772697159499" clover="3.2.0">
-  <project timestamp="1772697159499" name="All files">
+<coverage generated="1772708585321" clover="3.2.0">
+  <project timestamp="1772708585321" name="All files">
     <metrics statements="95" coveredstatements="92" conditionals="94" coveredconditionals="77" methods="17" coveredmethods="15" elements="206" coveredelements="184" complexity="0" loc="95" ncloc="95" packages="1" files="1" classes="1"/>
     <file name="emailVerifier.js" path="D:\Projects\email-verifier\src\emailVerifier.js">
       <metrics statements="95" coveredstatements="92" conditionals="94" coveredconditionals="77" methods="17" coveredmethods="15"/>
