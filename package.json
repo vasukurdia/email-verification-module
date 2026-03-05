@@ -1,0 +1,19 @@
+{
+  "name": "email-verifier",
+  "version": "1.0.0",
+  "description": "Email verification module using SMTP protocol",
+  "main": "src/emailVerifier.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
+}
