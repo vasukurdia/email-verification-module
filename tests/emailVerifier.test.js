@@ -2,7 +2,6 @@
 
 const EventEmitter = require('events');
 
-// ── Mock dns and net BEFORE requiring the module ──────────────────────────────
 jest.mock('dns', () => ({
   promises: {
     resolveMx: jest.fn(),
@@ -22,7 +21,6 @@ const dns = require('dns').promises;
 const net = require('net');
 const { verifyEmail, getDidYouMean, validateSyntax, levenshtein, RESULT_CODES } = require('../src/emailVerifier');
 
-// Helper to simulate full SMTP conversation
 function emulateSMTP(rcptCode) {
   setTimeout(() => mockSocket.emit('data', Buffer.from('220 smtp.example.com ESMTP\r\n')), 10);
   setTimeout(() => mockSocket.emit('data', Buffer.from('250-smtp.example.com\r\n250 OK\r\n')), 20);
@@ -40,9 +38,6 @@ beforeEach(() => {
   net.createConnection.mockReturnValue(mockSocket);
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 1. levenshtein()
-// ─────────────────────────────────────────────────────────────────────────────
 describe('levenshtein()', () => {
   test('identical strings => distance 0', () => {
     expect(levenshtein('gmail.com', 'gmail.com')).toBe(0);
@@ -58,11 +53,8 @@ describe('levenshtein()', () => {
   });
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 2. validateSyntax()
-// ─────────────────────────────────────────────────────────────────────────────
+
 describe('validateSyntax()', () => {
-  // Valid formats
   test('valid standard email passes', () => {
     expect(validateSyntax('user@example.com').valid).toBe(true);
   });
@@ -73,7 +65,7 @@ describe('validateSyntax()', () => {
     expect(validateSyntax('user+tag@example.com').valid).toBe(true);
   });
 
-  // Invalid formats
+
   test('empty string is invalid', () => {
     expect(validateSyntax('').valid).toBe(false);
   });
@@ -112,9 +104,7 @@ describe('validateSyntax()', () => {
   });
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3. getDidYouMean()
-// ─────────────────────────────────────────────────────────────────────────────
+
 describe('getDidYouMean()', () => {
   test('gmial.com -> gmail.com', () => {
     expect(getDidYouMean('user@gmial.com')).toBe('user@gmail.com');
@@ -139,9 +129,7 @@ describe('getDidYouMean()', () => {
   });
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4. verifyEmail() — SMTP error codes
-// ─────────────────────────────────────────────────────────────────────────────
+
 describe('verifyEmail() - SMTP error codes', () => {
   test('SMTP 550 => result=invalid, subresult=mailbox_does_not_exist', async () => {
     emulateSMTP(550);
@@ -178,9 +166,7 @@ describe('verifyEmail() - SMTP error codes', () => {
   });
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. verifyEmail() — edge cases
-// ─────────────────────────────────────────────────────────────────────────────
+
 describe('verifyEmail() - edge cases', () => {
   test('empty string handled', async () => {
     const r = await verifyEmail('');
