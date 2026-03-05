@@ -117,10 +117,13 @@ getDidYouMean('user@gmail.com')   // → null
 
 Most mail servers (Gmail, Yahoo, etc.) block port 25 and reject `RCPT TO` probing. So on real emails, the result will often be `unknown / connection_error`. The logic is correct and all SMTP paths are fully tested using mocked sockets in the test suite.
 
-## Screenshots
+## 📸 Screenshots  
 
-![Screenshot 1](screentshots\screenshot1.jpg)
+### 🔹 Screenshot 1  
+![Screenshot 1](screenshots/screenshot1.jpg)
 
-![Screenshot 2](screentshots\screenshot2.jpg)
+### 🔹 Screenshot 2  
+![Screenshot 2](screenshots/screenshot2.jpg)
 
-![Screenshot 3](screentshots\screenshot3.jpg)
+### 🔹 Screenshot 3  
+![Screenshot 3](screenshots/screenshot3.jpg)
