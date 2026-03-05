@@ -9,9 +9,9 @@ A Node.js module that verifies email addresses using DNS MX lookup and SMTP prob
 ```
 email-verifier/
 ├── src/
-│   └── emailVerifier.js      # Core module
+│   └── emailVerifier.js
 ├── tests/
-│   └── emailVerifier.test.js # Jest test suite
+│   └── emailVerifier.test.js
 ├── package.json
 └── README.md
 ```
